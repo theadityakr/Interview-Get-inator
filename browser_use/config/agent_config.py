@@ -50,5 +50,5 @@ class AgentFactory:
             ],
 
             # ===== Debug =====
-            generate_gif="logs/agent.gif" if get_env("GENERATE_GIF") == "true" else None
+            generate_gif="logs/agent.gif" if get_env("GENERATE_GIF") == "true" else "false"
         )

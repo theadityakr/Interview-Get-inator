@@ -60,7 +60,8 @@ playwright install
 # ▶️ Running the API Server
 
 ```bash
-uv run uvicorn main:app --reload
+mkdir logs
+uv run python main.py
 ```
 
 ---

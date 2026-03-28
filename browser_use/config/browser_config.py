@@ -11,6 +11,6 @@ class BrowserFactory:
             browser_profile=BrowserProfile(
                 headless=get_env("HEADLESS", "false") == "true",
                 disable_security=get_env("BROWSER_SECURITY", "false") == "true",
-                extra_chromium_args=args_list
+                # extra_chromium_args=args_list
             )
         )
