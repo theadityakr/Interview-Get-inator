@@ -135,6 +135,18 @@ async def run_agent_task(url: str):
         - If a required field is empty → fill it using resume data or candidate details above
         - If dropdown has no exact match → pick the closest option
         - Always scroll down to check for more fields before submitting
+        - DROPDOWN HANDLING (CRITICAL):
+          * When a dropdown search field appears, type the value and WAIT for suggestions to load
+          * If suggestions appear, click the FIRST matching option from the dropdown list
+          * Do NOT just type and move on — always SELECT from the dropdown, do not leave it as typed text
+          * If "Mumbai" is typed and "Mumbai, Maharashtra" appears in dropdown → click "Mumbai, Maharashtra"
+          * If exact match not found → select the closest available option from the list
+          * If dropdown shows no results → clear the field, try a shorter search term and try again
+          * After selecting from dropdown, verify the field shows the selected value before proceeding
+          * For City fields: type city name → wait for dropdown → click matching city+state option
+          * For State fields: type state name → wait for dropdown → click matching option
+          * For Country fields: type "India" → wait for dropdown → click "India"
+          * Never skip a dropdown field — always ensure a value is selected from the list
 
         STOP CONDITIONS:
         - STOP if captcha appears
