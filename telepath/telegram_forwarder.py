@@ -1,11 +1,14 @@
+import os
 from telethon import TelegramClient, events
-from config.env import get_env
+from dotenv import load_dotenv
 
-API_ID = get_env("APP_ID")
-API_HASH = get_env("API_HASH")
+load_dotenv()
 
-SOURCE_CHANNELS = get_env("SOURCE_CHANNELS", "").split(",")
-DEST_CHANNEL = get_env("DEST_CHANNEL")
+API_ID = int(os.getenv("APP_ID"))
+API_HASH = os.getenv("API_HASH")
+PHONE = os.getenv("PHONE")  # add this to .env
+SOURCE_CHANNELS = os.getenv("SOURCE_CHANNELS", "").split(",")
+DEST_CHANNEL = os.getenv("DEST_CHANNEL")
 
 client = TelegramClient("forwarder_session", API_ID, API_HASH)
 
@@ -15,5 +18,5 @@ async def handler(event):
     print(f"Forwarded from {event.chat.username}: {event.message.id}")
 
 print("Listening to all channels...")
-client.start()
+client.start(phone=PHONE)
 client.run_until_disconnected()

@@ -1,12 +1,11 @@
-from browser_use import ChatOpenAI, ChatBrowserUse, ChatGoogle, ChatAnthropic
-# from langchain_openai import AzureChatOpenAI
-from .env import get_env
+from browser_use import ChatOpenAI, ChatBrowserUse, ChatGoogle, ChatAnthropic, ChatAzureOpenAI
+from config.env import get_env
 
 
 def build_llm(model_key: str):
     provider = get_env("LLM_PROVIDER", "openai").lower()
     model = get_env(model_key)
-
+    print(get_env("AZURE_OPENAI_ENDPOINT"))
     if provider == "browseruse":
         return ChatBrowserUse()
 
@@ -16,13 +15,14 @@ def build_llm(model_key: str):
     if provider == "anthropic":
         return ChatAnthropic(model=model or 'claude-sonnet-4-0', temperature= float(get_env("TEMPERATURE") or 0.0))
 
-    # if provider == "azure":
-    #     return AzureChatOpenAI(
-    #         azure_deployment=model,
-    #         azure_endpoint=get_env("AZURE_OPENAI_ENDPOINT"),
-    #         api_key=get_env("AZURE_OPENAI_API_KEY"),
-    #         api_version=get_env("AZURE_OPENAI_API_VERSION", "2024-02-01"),
-    #     )
+    if provider == "azure":
+        return ChatAzureOpenAI(
+            model=model,
+            use_responses_api=get_env("USE_RESPONSES_API") or False,
+            azure_endpoint=get_env("AZURE_OPENAI_ENDPOINT"),
+            api_key=get_env("AZURE_OPENAI_API_KEY"),
+            api_version=get_env("AZURE_OPENAI_API_VERSION", "2025-01-01-preview"),
+        )
 
     # default: openai
     return ChatOpenAI(model=model)
