@@ -68,14 +68,8 @@ class AgentFactory:
             page_extraction_llm=LLMConfig.extraction(),
 
             # ===== Browser (CDP — connects to running Chrome) =====
-            browser=Browser(
-                browser_profile=BrowserProfile(
-                    cdp_url=cdp_url,
-                    headless=False,
-                    disable_security=get_env("BROWSER_SECURITY", "false") == "true",
-                )
-            ),
-
+            browser=Browser(browser_profile=BrowserProfile(cdp_url="http://localhost:9222", headless=False)),
+            
             # ===== Tools =====
             tools=tools,
 
@@ -90,5 +84,5 @@ class AgentFactory:
             save_conversation_path=get_env("LOG_PATH"),
 
             # ===== Debug =====
-            generate_gif="logs/agent.gif" if get_env("GENERATE_GIF") == "true" else None
+            generate_gif="logs/agent.gif" if get_env("GENERATE_GIF") == "true" else "true",
         )

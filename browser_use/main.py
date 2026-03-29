@@ -7,9 +7,11 @@ if sys.platform == "win32":
 
 from fastapi import FastAPI
 from controller.job_controller import router as job_router
+from controller.portal_controller import router as portal_router
 
 app = FastAPI(title="Job Automation API")
 app.include_router(job_router)
+app.include_router(portal_router)
 
 @app.get("/api/v1/health")
 def health():

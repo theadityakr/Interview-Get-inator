@@ -27,26 +27,6 @@ async def run_portal_task(url: str, max_jobs: int, max_minutes: int, service=Non
     RESUME DATA:
     {resume_json}
 
-    CANDIDATE TECH STACK (use this to filter relevant jobs):
-    - Programming Languages: Java, C/C++, Python, SQL
-    - Frameworks: Spring Boot, Spring Security, FastAPI, Flask, Microservices
-    - Databases: PostgreSQL, Redis, MySQL, MongoDB, CosmosDB
-    - DevOps: Docker, Kubernetes, Nginx, Jenkins, Azure DevOps, Terraform
-    - Messaging: RabbitMQ, Kafka
-    - Testing: Selenium, TestRail, JUnit, Mockito
-    - Experience Level: 2 years (Software Engineer / Backend Engineer / SDE-1 / SDE-2)
-
-    COMPENSATION:
-    - Current CTC: 10 LPA (all fixed)
-    - Expected CTC: 15 LPA
-    - Notice Period: 2 months / 60 days
-    - Preferred Locations: Bangalore, Bengaluru, Gurugram, Gurgaon, Noida
-
-    CREDENTIALS:
-    - Email: {resume_data.get('email')}
-    - Password: Life@is@2
-    - Google account is already logged in on this browser — use "Sign in with Google" if available
-
     BROWSER NOTE:
     - You are using the user's real Chrome browser session
     - Cookies and existing logins are preserved
@@ -65,8 +45,8 @@ async def run_portal_task(url: str, max_jobs: int, max_minutes: int, service=Non
 
     3. NAVIGATE TO JOBS SECTION:
        - Go to Jobs / Search Jobs section
-       - Search for relevant roles: "Software Engineer", "Backend Engineer", "Java Developer", "Spring Boot Developer"
-       - Filter by: Experience 1-3 years, Locations: Bangalore OR Gurugram OR Noida
+       - Search for relevant roles: Based on the Candidates experience and skills
+       - Filter by: Experience , Locations: based on the candidates resume data
 
     4. APPLY TO JOBS LOOP (repeat until {max_jobs} jobs applied or {max_minutes} minutes elapsed):
        - Scan the job listings
@@ -75,10 +55,7 @@ async def run_portal_task(url: str, max_jobs: int, max_minutes: int, service=Non
          b. Check if job is relevant for 1-3 years experience
          c. If relevant → click Apply
          d. Fill application form using resume data
-         e. For any compensation fields:
-            - Current CTC: 10 LPA
-            - Expected CTC: 15 LPA
-            - Notice Period: 60 days / 2 months
+         e. For any compensation fields: use the candidates data
          f. Submit application
          g. Note job title and company
          h. Go back to job listings
@@ -94,8 +71,8 @@ async def run_portal_task(url: str, max_jobs: int, max_minutes: int, service=Non
        - For skills: select from available tags/chips
 
     6. PHONE NUMBER RULES:
-       - If country code dropdown exists → select India (+91) → enter only 9372444569
-       - If single field → enter +919372444569
+       - If country code dropdown exists → select India (+91) → enter only candidates phone number
+       - If single field → enter  phone number
 
     7. STOP when any of these conditions are met:
        - {max_jobs} jobs applied successfully
